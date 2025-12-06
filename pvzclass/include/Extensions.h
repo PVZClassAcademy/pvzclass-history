@@ -341,6 +341,6 @@ inline void DisableMusicInterfaceUpdate(BOOLEAN b = true)
 /// @param b 是否开启此功能
 inline void DisableMusicUpdate(BOOLEAN b = true)
 {
-	MEMMOD_INT(0x452702, 0x90909090, 0x8F69E8);
+	MEMMOD_INT(0x452702, 0x90909090, 0x8F69E8)
 	MEMMOD_BYTE(0x452706, NOP, 0);
 }
