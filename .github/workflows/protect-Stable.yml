@@ -1,30 +1,19 @@
-name: PRBlock
+name: PRBlock-Stable
 
 on:
   pull_request:
     types: [opened, reopened, synchronize]
-    branches: [ "Stable" ]
+    branches: 
+      - Stable
 
 jobs:
   close-pr:
     runs-on: ubuntu-latest
 
     steps:        
-    - id: close-operation
+    - id: block-operation
       uses: actions/github-script@v7
       with:
         script: |
-          const targetBranch = '${{ steps.check-branch.outputs.target_branch }}';
-          await github.rest.issues.createComment({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: context.issue.number,
-            body: `🚫 **PR 自动关闭通知**\n\n这个 PR 的目标分支是 **${targetBranch}**，该分支用于维护稳定版 PVZClass，不允许合并 PR。\n\n请将目标分支更改为 Refurbishment 等受保护分支。`
-          });
-          
-          await github.rest.pulls.update({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: context.issue.number,
-            state: 'closed'
-          });
+          echo "这个 PR 的目标分支是 Stable，该分支用于维护稳定版 PVZClass，不允许合并 PR。\n\n如果你尝试修复 2.x 版本的漏洞，请以 Stable-2.x 为目标分支重新开启 PR。"
+          exit 1
