@@ -50,7 +50,9 @@ PVZ::Zombie Creator::CreateZombie(ZombieType::ZombieType type, int row, byte col
 	__asm__CreateZombie[12] = column;
 	__asm__CreateZombie[14] = type;
 	SETARG(__asm__CreateZombie, 29) = PVZ::Memory::Variable;
-	return PVZ::Zombie(PVZ::Memory::Execute(STRING(__asm__CreateZombie)));
+	auto zombie = PVZ::Zombie(PVZ::Memory::Execute(STRING(__asm__CreateZombie)));
+	if (type == ZombieType::DrZomboss) zombie.X = 0;
+	return zombie;
 }
 
 byte __asm__CreatePlant[35]
