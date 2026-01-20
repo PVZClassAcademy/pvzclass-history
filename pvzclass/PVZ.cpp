@@ -81,7 +81,7 @@ void PVZ::InitPVZNoLock(DWORD pid)
 
 const char* PVZ::PVZutil::__get_Version()
 {
-	return "2.7.1.260114";
+	return "3.0.260120-alpha-1";
 }
 
 PVZVersion::PVZVersion PVZ::PVZutil::__get_GameVersion()

@@ -142,6 +142,11 @@ PVZ::Memory::InjectDll("yourdll.dll");
 - 可以获取 pvzclass 的版本和游戏版本
 - 需要实例化以使用其功能
 
+### 关于 PVZString 类
+
+- 是命名空间 `PVZ` 下的类
+- 它的对象代表了游戏中的一个字符串
+
 ### 关于 Animation 类
 
 * 是命名空间 `PVZ` 下的类
@@ -250,6 +255,8 @@ std::vector<SPT<PVZ::Zombie>> zombies = PVZ::GetBoard()->GetAllZombies();
 1. 重载函数 `CreateProjectile(ProjectileType::ProjectileType,int,int,float,float)`
 2. `__CreatePortal`
 3. `CreatePortal`
+4. `Rand`
+5. `RandFloat`
 
 * `FrozeAll` 函数需要在关卡出现过植物的情况下才有效果
 
@@ -257,7 +264,6 @@ std::vector<SPT<PVZ::Zombie>> zombies = PVZ::GetBoard()->GetAllZombies();
 
 - `Cosnt` 是一个名称空间
 - 提供了查询、修改部分常量的函数
-- 默认**不在** `pvzclass.h` 中被包含，请手动 `#include`
 
 ### 关于 Events
 
