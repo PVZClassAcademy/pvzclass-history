@@ -165,7 +165,21 @@ PVZ::PVZString PVZ::PVZString::Make(const char* str)
 	PVZ::Memory::FreeMemory(fromAddress);
 	return PVZ::PVZString(toAddress);
 }
-
+PVZ::PVZString PVZ::PVZString::ToString(const char* str)
+{
+	int len = strlen(str);
+	DWORD fromAddress = PVZ::Memory::AllocMemory(0, len + 1);
+	PVZ::Memory::WriteArray<const char>(fromAddress, str, len + 1);
+	DWORD toAddress = PVZ::Memory::AllocMemory(0, 0x1C);
+	PVZ::Memory::Execute(AsmBuilder()
+		.push_imm32(fromAddress)
+		.mov_reg_imm(REG_ECX, toAddress)
+		.invoke(0x404450)
+		.ret()
+	);
+	PVZ::Memory::FreeMemory(fromAddress);
+	return PVZ::PVZString(toAddress);
+}
 PVZ::PVZString PVZ::PVZString::Translate(const char* str)
 {
 	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, str, std::strlen(str) + 1);

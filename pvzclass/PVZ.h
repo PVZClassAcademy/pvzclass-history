@@ -142,6 +142,7 @@ namespace PVZ
 		/// @return 创建的字符串
 		/// @author Moon404
 		static PVZString Make(const char* str);
+		static PVZString ToString(const char* str);
 		/// @brief 将给定的“[X]”格式字符数组转换为对应的译文字符串
 		/// @note 不符合格式时，会直接转换为字符串。
 		/// @param str 原字符串
