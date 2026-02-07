@@ -9,7 +9,9 @@ namespace AnimationType
 		PavePath,
 		FinalWave,
 		Peashooter,
-		Wallbut,
+		Wallnut,
+		/// @deprecated use Wallnut
+		Wallbut = 5,
 		LilyPad,
 		Sunflower,
 		LawnMower,
