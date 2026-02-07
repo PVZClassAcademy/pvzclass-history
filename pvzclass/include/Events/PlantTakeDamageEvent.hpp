@@ -145,7 +145,7 @@ public:
 			INVOKE(address),
 			ADD_ESP(16),
 			TEST_EUX_EVX(REG_EAX, REG_EAX),
-			JS(12),
+			JS(8),
 
 			0xF7, 0xD8,
 			ADD_PTR_EUX_ADD_V_EVX(REG_ESI, 0x40, REG_EAX),
