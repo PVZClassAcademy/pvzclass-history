@@ -284,9 +284,9 @@ namespace PVZ
 		std::vector<T> GetAllGriditems()
 		{
 			std::vector<T> griditems;
-			int maxnum = Memory::ReadMemory<int>(BaseAddress + 0x120);
+			int num = Memory::ReadMemory<int>(BaseAddress + 0x12C);
 			DWORD base_addr = Memory::ReadMemory<DWORD>(BaseAddress + 0x11C);
-			for (int i = 0; i < maxnum; i++)
+			for (int i = 0; i < num; i++)
 			{
 				if (!Memory::ReadMemory<byte>(base_addr + 0x20 + T::MemSize * i)
 					&& (T::ItemType == 0 || Memory::ReadMemory<byte>(base_addr + 8 + T::MemSize * i) == T::ItemType))
