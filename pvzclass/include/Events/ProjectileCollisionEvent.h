@@ -15,9 +15,15 @@ namespace PVZEvent {
 		public:
 			ProjectileNormalCollisionEvent(int address) : DLLEventTemplate() { Init(address); }
 		protected:
-			virtual void InitExtra(AsmBuilder& builder) override
+			void Init(int address)
 			{
-				builder.cmp_reg_imm(REG_EAX, 0)
+				hookAddress = 0x46CFC5;
+				rawlen = 10;
+				LabelBuilder builder{};
+				builder.add_bytes(compiled_base_bytes.data(), calculate_total_size());
+
+				builder.invoke(address).add_reg_imm(REG_ESP, this->regs.size() << 2)
+					.cmp_reg_imm(REG_EAX, 0)
 					.popad()
 					.push_reg(REG_EBP)
 
@@ -32,6 +38,8 @@ namespace PVZEvent {
 					.jmp_to(0x46CFCF)
 					.label("hit_zombie")
 					.jmp_to(0x46D058);
+
+				start(builder.get_code() + 1, builder.get_length() - 1);
 			}
 		} *normal;
 
@@ -40,9 +48,15 @@ namespace PVZEvent {
 		public:
 			ProjectileThrowCollisionEvent(int address) : DLLEventTemplate() { Init(address); }
 		protected:
-			virtual void InitExtra(AsmBuilder& builder)
+			void Init(int address)
 			{
-				builder.cmp_reg_imm(REG_EAX, 0)
+				hookAddress = 0x46D63E;
+				rawlen = 10;
+				LabelBuilder builder{};
+				builder.add_bytes(compiled_base_bytes.data(), calculate_total_size());
+
+				builder.invoke(address).add_reg_imm(REG_ESP, this->regs.size() << 2)
+					.cmp_reg_imm(REG_EAX, 0)
 					.popad()
 					.jge_label("no_pvz_judge")
 					.cmp_reg_imm(REG_EAX, 0x9)
@@ -57,6 +71,8 @@ namespace PVZEvent {
 					.jmp_to(0x46D656)
 					.label("hit_zombie")
 					.jmp_to(0x46D648);
+
+				start(builder.get_code() + 1, builder.get_length() - 1);
 			}
 		} *throvv;
 		// part3没看懂所以不搬

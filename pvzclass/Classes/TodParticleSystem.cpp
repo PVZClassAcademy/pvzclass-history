@@ -38,7 +38,7 @@ void PVZ::TodParticleSystem::OverrideColor(const char* emitter_name, Color& colo
 		PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, emitter_name, std::strlen(emitter_name) + 1);
 	}
 
-	PVZ::Memory::Execute(AsmBuilder(128)
+	PVZ::Memory::Execute(AsmBuilder128()
 		.mov_reg_imm(REG_EBX, tmp_ptr)
 		.push(color.Alpha)
 		.push(color.Blue)

@@ -164,9 +164,28 @@ namespace PVZ
 		/// @return 指令执行完毕时，Variable 地址上的数值
 		static int Execute(byte asmcode[], int length);
 		/// @brief 在 PVZ 主程序中执行指定指令序列。
+		/// @tparam _SZ AsmBuilder 序列长度上限
 		/// @param builder 构建指令序列的 AsmBuilder
 		/// @return 指令执行完毕时，Variable 地址上的数值
-		static int Execute(AsmBuilder& builder);
+		template<typename _Derived, size_t _SZ>
+		static int Execute(BaseBuilder<_Derived, _SZ>& builder)
+		{
+			if (localExecute)
+			{
+				byte* code = builder.get_code();
+				DWORD length = builder.get_length();
+				code[0] = PUSHAD;
+				code[length - 1] = POPAD;
+				code[length] = RET;
+				void (*func)() = (void (*)())code;
+				func();
+				return ReadMemory<int>(Variable);
+			}
+			else
+			{
+				return PVZ::Memory::Execute(builder.get_code() + 1, builder.get_length() - 1);
+			}
+		}
 		/// @brief 注入指定的 lib 或 dll 文件。
 		/// @param dllname 注入的链接库的路径
 		/// @return 是否注入成功

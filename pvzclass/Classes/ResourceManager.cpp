@@ -16,7 +16,7 @@ void PVZ::ResourceManager::AddPAKFile(const char* fileName)
 {
 	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, fileName, std::strlen(fileName) + 1);
 
-	PVZ::Memory::Execute(AsmBuilder(128)
+	PVZ::Memory::Execute(AsmBuilder128()
 		.mov_reg_imm(REG_ECX, PVZ::Memory::Variable + 600)
 		.push_imm32(PVZ::Memory::Variable + 100)
 		.invoke(0x404450)
@@ -33,7 +33,7 @@ bool PVZ::ResourceManager::ParseResourcesFile(const char* fileName)
 	this->AllowAlreadyDefinedResources = true;
 	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, fileName, std::strlen(fileName) + 1);
 
-	return PVZ::Memory::Execute(AsmBuilder(128)
+	return PVZ::Memory::Execute(AsmBuilder128()
 		.mov_reg_imm(REG_ECX, PVZ::Memory::Variable + 600)
 		.push_imm32(PVZ::Memory::Variable + 100)
 		.invoke(0x404450)
@@ -54,7 +54,7 @@ bool PVZ::ResourceManager::TodLoadResources(const char* groupName)
 {
 	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, groupName, std::strlen(groupName) + 1);
 
-	return PVZ::Memory::Execute(AsmBuilder(128)
+	return PVZ::Memory::Execute(AsmBuilder128()
 		.mov_reg_imm(REG_ECX, PVZ::Memory::Variable + 600)
 		.push_imm32(PVZ::Memory::Variable + 100)
 		.invoke(0x404450)
@@ -75,7 +75,7 @@ PVZ::SoundID PVZ::ResourceManager::GetSoundThrow(const char* soundName)
 {
 	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, soundName, std::strlen(soundName) + 1);
 
-	return (PVZ::SoundID)PVZ::Memory::Execute(AsmBuilder(128)
+	return (PVZ::SoundID)PVZ::Memory::Execute(AsmBuilder128()
 		.mov_reg_imm(REG_ECX, PVZ::Memory::Variable + 600)
 		.push_imm32(PVZ::Memory::Variable + 100)
 		.invoke(0x404450)
@@ -95,7 +95,7 @@ PVZ::Image PVZ::ResourceManager::GetImage(const char* imageName)
 {
 	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, imageName, std::strlen(imageName) + 1);
 
-	return (PVZ::Image)PVZ::Memory::Execute(AsmBuilder(128)
+	return (PVZ::Image)PVZ::Memory::Execute(AsmBuilder128()
 		.mov_reg_imm(REG_ECX, PVZ::Memory::Variable + 600)
 		.push_imm32(PVZ::Memory::Variable + 100)
 		.invoke(0x404450)
