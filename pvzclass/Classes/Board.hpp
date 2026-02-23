@@ -288,6 +288,8 @@ namespace PVZ
 			DWORD base_addr = Memory::ReadMemory<DWORD>(BaseAddress + 0x11C);
 			for (int i = 0; i < maxnum; i++)
 			{
+				if ((Memory::ReadMemory<byte>(base_addr + 0xE8 + T::MemSize * i) & 0xFFFF0000) == 0)
+					continue;
 				if (!Memory::ReadMemory<byte>(base_addr + 0x20 + T::MemSize * i)
 					&& (T::ItemType == 0 || Memory::ReadMemory<byte>(base_addr + 8 + T::MemSize * i) == T::ItemType))
 					griditems.push_back(T(i));
