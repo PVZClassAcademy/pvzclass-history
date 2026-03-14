@@ -226,6 +226,19 @@ namespace PVZ
 		/// @note 注意不要清理掉了后续还要被使用的对象。
 		void RemoveNotExistGameObjects();
 
+		/// @brief 更新游戏对象（僵尸、植物、子弹等）
+		void UpdateGameObjects();
+		/// @brief 更新阳光生成
+		void UpdateSunSpawning();
+		/// @brief 更新僵尸生成
+		void UpdateZombieSpawning();
+		/// @brief 更新冰道效果
+		void UpdateIce();
+		/// @brief 更新场地物品
+		void UpdateGridItems();
+		/// @brief 更新迷雾效果
+		void UpdateFog();
+
 #pragma endregion
 
 #pragma region getmethod

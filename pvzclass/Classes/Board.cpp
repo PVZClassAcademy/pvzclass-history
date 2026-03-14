@@ -364,6 +364,60 @@ void PVZ::Board::RemoveNotExistGameObjects()
 	);
 }
 
+void PVZ::Board::UpdateGameObjects()
+{
+	PVZ::Memory::Execute(AsmBuilder()
+		.mov_reg_imm(REG_EBX, BaseAddress)
+		.invoke(0x4130D0)
+		.ret()
+	);
+}
+
+void PVZ::Board::UpdateSunSpawning()
+{
+	PVZ::Memory::Execute(AsmBuilder()
+		.mov_reg_imm(REG_ESI, BaseAddress)
+		.invoke(0x413A70)
+		.ret()
+	);
+}
+
+void PVZ::Board::UpdateZombieSpawning()
+{
+	PVZ::Memory::Execute(AsmBuilder()
+		.mov_reg_imm(REG_ECX, BaseAddress)
+		.invoke(0x413D00)
+		.ret()
+	);
+}
+
+void PVZ::Board::UpdateIce()
+{
+	PVZ::Memory::Execute(AsmBuilder()
+		.push_imm32(BaseAddress)
+		.invoke(0x414100)
+		.ret()
+	);
+}
+
+void PVZ::Board::UpdateGridItems()
+{
+	PVZ::Memory::Execute(AsmBuilder()
+		.mov_reg_imm(REG_EDI, BaseAddress)
+		.invoke(0x41D730)
+		.ret()
+	);
+}
+
+void PVZ::Board::UpdateFog()
+{
+	PVZ::Memory::Execute(AsmBuilder()
+		.push_imm32(BaseAddress)
+		.invoke(0x41A5D0)
+		.ret()
+	);
+}
+
 void PVZ::Board::Assault(int countdown)
 {
 	Memory::WriteMemory<int>(BaseAddress + 0x5574, countdown);
