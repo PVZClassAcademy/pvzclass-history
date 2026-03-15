@@ -1,6 +1,6 @@
 #include "Sexy.h"
 
-Sexy::PButtonListener Sexy::MakeButtonListener(ButtonListener* listener)
+PVZ::Sexy::PButtonListener PVZ::Sexy::MakeButtonListener(ButtonListener* listener)
 {
 	int address = PVZ::Memory::AllocMemory(0, 32);
 	PVZ::Memory::WriteMemory<int>(address, address + 4);
@@ -8,7 +8,7 @@ Sexy::PButtonListener Sexy::MakeButtonListener(ButtonListener* listener)
 	return address;
 }
 
-Sexy::PEditListener Sexy::MakeEditListener(EditListener* listener)
+PVZ::Sexy::PEditListener PVZ::Sexy::MakeEditListener(EditListener* listener)
 {
 	int address = PVZ::Memory::AllocMemory(0, 20);
 	PVZ::Memory::WriteMemory<int>(address, address + 4);
@@ -16,7 +16,7 @@ Sexy::PEditListener Sexy::MakeEditListener(EditListener* listener)
 	return address;
 }
 
-Sexy::PCheckboxListener Sexy::MakeCheckboxListener(CheckboxListener* listener)
+PVZ::Sexy::PCheckboxListener PVZ::Sexy::MakeCheckboxListener(CheckboxListener* listener)
 {
 	int address = PVZ::Memory::AllocMemory(0, 8);
 	PVZ::Memory::WriteMemory<int>(address, address + 4);
@@ -24,7 +24,7 @@ Sexy::PCheckboxListener Sexy::MakeCheckboxListener(CheckboxListener* listener)
 	return address;
 }
 
-Sexy::PListListener Sexy::MakeListListener(ListListener* listener)
+PVZ::Sexy::PListListener PVZ::Sexy::MakeListListener(ListListener* listener)
 {
 	int address = PVZ::Memory::AllocMemory(0, 16);
 	PVZ::Memory::WriteMemory<int>(address, address + 4);
@@ -43,7 +43,7 @@ BYTE __asm__MakeButton[]
 	RET
 };
 
-Sexy::PButton Sexy::MakeButton(PVZ::PVZString str, PButtonListener listener, int theId)
+PVZ::Sexy::PButton PVZ::Sexy::MakeButton(PVZ::PVZString str, PButtonListener listener, int theId)
 {
 	SETARG(__asm__MakeButton, 1) = str.GetBaseAddress();
 	SETARG(__asm__MakeButton, 6) = listener;
@@ -67,7 +67,7 @@ BYTE __asm__MakeImageButton[]
 	RET
 };
 
-Sexy::PButton Sexy::MakeImageButton(Draw::PImage down, Draw::PImage over, Draw::PImage normal,
+PVZ::Sexy::PButton PVZ::Sexy::MakeImageButton(Draw::PImage down, Draw::PImage over, Draw::PImage normal,
 	DWORD fontAddress, PVZ::PVZString str, PButtonListener listener, int theId)
 {
 	SETARG(__asm__MakeImageButton, 1) = down;
@@ -97,7 +97,7 @@ BYTE __asm__MakeDialog[]
 	RET
 };
 
-Sexy::PDialog Sexy::MakeDialog(int buttonMode, PVZ::PVZString footer, PVZ::PVZString lines,
+PVZ::Sexy::PDialog PVZ::Sexy::MakeDialog(int buttonMode, PVZ::PVZString footer, PVZ::PVZString lines,
 	PVZ::PVZString header, int modal, int dialogId)
 {
 	SETARG(__asm__MakeDialog, 1) = buttonMode;
@@ -120,7 +120,7 @@ BYTE __asm__MakeEdit[]
 	RET
 };
 
-Sexy::PEdit Sexy::MakeEdit(PDialog dialog, PEditListener listener)
+PVZ::Sexy::PEdit PVZ::Sexy::MakeEdit(PDialog dialog, PEditListener listener)
 {
 	SETARG(__asm__MakeEdit, 1) = dialog;
 	SETARG(__asm__MakeEdit, 6) = listener;
@@ -128,12 +128,12 @@ Sexy::PEdit Sexy::MakeEdit(PDialog dialog, PEditListener listener)
 	return PVZ::Memory::Execute(STRING(__asm__MakeEdit));
 }
 
-PVZ::PVZString Sexy::GetEditString(PEdit edit)
+PVZ::PVZString PVZ::Sexy::GetEditString(PEdit edit)
 {
 	return PVZ::PVZString(edit + 0x8C);
 }
 
-void Sexy::SetEditString(PEdit edit, PVZ::PVZString pstr, bool left)
+void PVZ::Sexy::SetEditString(PEdit edit, PVZ::PVZString pstr, bool left)
 {
 	PVZ::Memory::Execute(AsmBuilder()
 		.push(left)
@@ -157,7 +157,7 @@ BYTE __asm__MakeCheckbox[]
 	RET
 };
 
-Sexy::PCheckbox Sexy::MakeCheckbox(int checked, PCheckboxListener listener, int theId)
+PVZ::Sexy::PCheckbox PVZ::Sexy::MakeCheckbox(int checked, PCheckboxListener listener, int theId)
 {
 	SETARG(__asm__MakeCheckbox, 1) = checked;
 	SETARG(__asm__MakeCheckbox, 6) = listener;
@@ -166,7 +166,7 @@ Sexy::PCheckbox Sexy::MakeCheckbox(int checked, PCheckboxListener listener, int 
 	return PVZ::Memory::Execute(STRING(__asm__MakeCheckbox));
 }
 
-bool Sexy::IsCheckboxChecked(PCheckbox checkbox)
+bool PVZ::Sexy::IsCheckboxChecked(PCheckbox checkbox)
 {
 	return PVZ::Memory::ReadMemory<bool>(checkbox + 0x90);
 }
@@ -182,7 +182,7 @@ BYTE __asm__setCheckboxChecked[]
 	RET
 };
 
-void Sexy::setCheckboxChecked(PCheckbox checkbox, bool checked, bool tellListener)
+void PVZ::Sexy::setCheckboxChecked(PCheckbox checkbox, bool checked, bool tellListener)
 {
 	__asm__setCheckboxChecked[1] = tellListener;
 	__asm__setCheckboxChecked[3] = checked;
@@ -198,7 +198,7 @@ BYTE __asm__MakeList[]
 	RET
 };
 
-Sexy::PList Sexy::MakeList(PListListener listener)
+PVZ::Sexy::PList PVZ::Sexy::MakeList(PListListener listener)
 {
 	int address = PVZ::Memory::AllocMemory(0, 0xF8);
 	SETARG(__asm__MakeList, 1) = listener;
@@ -219,7 +219,7 @@ BYTE __asm__AddListLine[]
 	RET
 };
 
-int Sexy::AddListLine(PList list, PVZ::PVZString line, bool alphabetical)
+int PVZ::Sexy::AddListLine(PList list, PVZ::PVZString line, bool alphabetical)
 {
 	__asm__AddListLine[1] = alphabetical;
 	SETARG(__asm__AddListLine, 3) = line.GetBaseAddress();
@@ -228,22 +228,22 @@ int Sexy::AddListLine(PList list, PVZ::PVZString line, bool alphabetical)
 	return PVZ::Memory::Execute(STRING(__asm__AddListLine));
 }
 
-void Sexy::SetListLineHeight(PList list, int height)
+void PVZ::Sexy::SetListLineHeight(PList list, int height)
 {
 	PVZ::Memory::WriteMemory<int>(list + 0xEC, height);
 }
 
-void Sexy::SetListJustify(PList list, int justify)
+void PVZ::Sexy::SetListJustify(PList list, int justify)
 {
 	PVZ::Memory::WriteMemory<int>(list + 0x98, justify);
 }
 
-void Sexy::SetListSelected(PList list, int id)
+void PVZ::Sexy::SetListSelected(PList list, int id)
 {
 	PVZ::Memory::WriteMemory<int>(list + 0xD4, id);
 }
 
-int Sexy::GetListSelected(PList list)
+int PVZ::Sexy::GetListSelected(PList list)
 {
 	return PVZ::Memory::ReadMemory<int>(list + 0xD4);
 }
@@ -258,7 +258,7 @@ BYTE __asm__FreeWidget[]
 	RET
 };
 
-void Sexy::FreeWidget(PWidget widget)
+void PVZ::Sexy::FreeWidget(PWidget widget)
 {
 	SETARG(__asm__FreeWidget, 3) = widget;
 	PVZ::Memory::Execute(STRING(__asm__FreeWidget));
@@ -277,7 +277,7 @@ BYTE __asm__ResizeButton[]
 	RET
 };
 
-void Sexy::ResizeWidget(PWidget widget, int x, int y, int width, int height)
+void PVZ::Sexy::ResizeWidget(PWidget widget, int x, int y, int width, int height)
 {
 	SETARG(__asm__ResizeButton, 1) = height;
 	SETARG(__asm__ResizeButton, 6) = width;
@@ -297,7 +297,7 @@ BYTE __asm__AddToWidget[]
 	RET
 };
 
-void Sexy::AddToWidget(PWidget widget, PWidget father)
+void PVZ::Sexy::AddToWidget(PWidget widget, PWidget father)
 {
 	SETARG(__asm__AddToWidget, 1) = widget;
 	SETARG(__asm__AddToWidget, 6) = father;
@@ -314,7 +314,7 @@ BYTE __asm__RemoveFromWidget[]
 	RET
 };
 
-void Sexy::RemoveFromWidget(PWidget widget, PWidget father)
+void PVZ::Sexy::RemoveFromWidget(PWidget widget, PWidget father)
 {
 	SETARG(__asm__RemoveFromWidget, 1) = widget;
 	SETARG(__asm__RemoveFromWidget, 6) = father;

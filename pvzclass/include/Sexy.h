@@ -3,7 +3,7 @@
 #include "Draw.h"
 #define WIDGETMANAGER PVZ::Memory::ReadPointer(0x6A9EC0, 0x320)
 
-namespace Sexy
+namespace PVZ::Sexy
 {
 	/*
 		监听器函数设置方式：
