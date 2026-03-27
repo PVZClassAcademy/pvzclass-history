@@ -124,13 +124,32 @@ namespace PVZ
 		/// @param address 数据的内存地址
 		/// @param result 待写入数据的指针
 		/// @param length 数组的长度（按字节计）
-		/// @return 读取是否成功
+		/// @return 写入是否成功
 		template <class T>
 		inline static BOOL WriteArray(DWORD address, T* value, size_t length)
 		{
 			if (localExecute)
 			{
 				AllAccess(address);
+				memcpy((void*)address, value, length);
+				return true;
+			}
+			else
+			{
+				return WriteProcessMemory(hProcess, (LPVOID)address, value, length, NULL);
+			}
+		};
+		/// @brief 将一连串数据写入 PVZ 程序指定地址。在 localExecute 为 true 时，忽略权限设置。
+		/// @tparam T 数据类型
+		/// @param address 数据的内存地址
+		/// @param result 待写入数据的指针
+		/// @param length 数组的长度（按字节计）
+		/// @return 写入是否成功
+		template <class T>
+		inline static BOOL WriteArrayUnsafe(DWORD address, T* value, size_t length)
+		{
+			if (localExecute)
+			{
 				memcpy((void*)address, value, length);
 				return true;
 			}

@@ -22,18 +22,20 @@ using std::endl;
 class DLLEvent
 {
 public:
+	virtual ~DLLEvent();
 	/// @brief 取消该事件产生的效应。
 	void end();
 
 protected:
 	int rawlen, hookAddress;
 	/// @brief 将指定代码段注入。
+	/// @attention 不要反复调用此函数，这会导致内存泄露。
 	/// @param code 代码段
 	/// @param len 代码段长度
 	void start(BYTE* code, int len);
 
 private:
-	BYTE* rawCode;
+	BYTE* rawCode = nullptr;
 	static int newAddress;
 };
 

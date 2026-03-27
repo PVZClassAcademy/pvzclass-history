@@ -46,10 +46,10 @@ PVZ::Color PVZ::Animation::GetColor()
 
 void PVZ::Animation::SetColor(Color color)
 {
-	Memory::WriteMemory<int>(BaseAddress + 0x48, color.Red);
-	Memory::WriteMemory<int>(BaseAddress + 0x4C, color.Green);
-	Memory::WriteMemory<int>(BaseAddress + 0x50, color.Blue);
-	Memory::WriteMemory<int>(BaseAddress + 0x54, color.Alpha);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x48, color.Red);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x4C, color.Green);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x50, color.Blue);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x54, color.Alpha);
 }
 
 PVZ::Color PVZ::Animation::GetAdditiveColor()
@@ -64,10 +64,10 @@ PVZ::Color PVZ::Animation::GetAdditiveColor()
 
 void PVZ::Animation::SetAdditiveColor(Color color)
 {
-	Memory::WriteMemory<int>(BaseAddress + 0x6C, color.Red);
-	Memory::WriteMemory<int>(BaseAddress + 0x70, color.Green);
-	Memory::WriteMemory<int>(BaseAddress + 0x74, color.Blue);
-	Memory::WriteMemory<int>(BaseAddress + 0x78, color.Alpha);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x6C, color.Red);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x70, color.Green);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x74, color.Blue);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x78, color.Alpha);
 }
 
 PVZ::Color PVZ::Animation::GetOverlayColor()
@@ -82,10 +82,10 @@ PVZ::Color PVZ::Animation::GetOverlayColor()
 
 void PVZ::Animation::SetOverlayColor(Color color)
 {
-	Memory::WriteMemory<int>(BaseAddress + 0x80, color.Red);
-	Memory::WriteMemory<int>(BaseAddress + 0x84, color.Green);
-	Memory::WriteMemory<int>(BaseAddress + 0x88, color.Blue);
-	Memory::WriteMemory<int>(BaseAddress + 0x8C, color.Alpha);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x80, color.Red);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x84, color.Green);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x88, color.Blue);
+	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x8C, color.Alpha);
 }
 
 PVZ::TrackInstance PVZ::Animation::GetTrackInstance(const char* trackName)
@@ -112,7 +112,7 @@ void PVZ::Animation::Die()
 
 void PVZ::Animation::Play(const char* trackName, int blendType, PVZEnum::ReanimLoopType loopType, float rate)
 {
-	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
+	PVZ::Memory::WriteArrayUnsafe<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
 	SETARGFLOAT(__asm__Reanimation__Play, 1) = rate;
 	SETARG(__asm__Reanimation__Play, 7) = blendType;
 	SETARG(__asm__Reanimation__Play, 12) = BaseAddress;
@@ -132,7 +132,7 @@ byte __asm__Reanimation__IsAnimPlaying[29]
 
 bool PVZ::Animation::IsAnimPlaying(const char* trackName)
 {
-	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
+	PVZ::Memory::WriteArrayUnsafe<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
 	SETARG(__asm__Reanimation__IsAnimPlaying, 1) = PVZ::Memory::Variable + 100;
 	SETARG(__asm__Reanimation__IsAnimPlaying, 6) = BaseAddress;
 	SETARG(__asm__Reanimation__IsAnimPlaying, 24) = PVZ::Memory::Variable;
@@ -152,7 +152,7 @@ bool PVZ::Animation::ShouldTriggerTimedEvent(float thetime)
 
 void PVZ::Animation::AssignRenderGroupToPrefix(const char* trackName, byte RenderGroup)
 {
-	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
+	PVZ::Memory::WriteArrayUnsafe<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
 	__asm__Reanimation__AssignGroupToPrefix[1] = RenderGroup;
 	SETARG(__asm__Reanimation__AssignGroupToPrefix, 3) = PVZ::Memory::Variable + 100;
 	SETARG(__asm__Reanimation__AssignGroupToPrefix, 8) = this->BaseAddress;
@@ -162,7 +162,7 @@ void PVZ::Animation::AssignRenderGroupToPrefix(const char* trackName, byte Rende
 AsmBuilder AssignRenderGroupToTrack_builder = AsmBuilder();
 void PVZ::Animation::AssignRenderGroupToTrack(const char* trackName, byte renderGroup)
 {
-	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
+	PVZ::Memory::WriteArrayUnsafe<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
 	AssignRenderGroupToTrack_builder.clear()
 		.push(renderGroup)
 		.push_imm32(PVZ::Memory::Variable + 100)
@@ -175,7 +175,7 @@ void PVZ::Animation::AssignRenderGroupToTrack(const char* trackName, byte render
 
 int PVZ::Animation::FindTrackIndex(const char* trackName)
 {
-	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
+	PVZ::Memory::WriteArrayUnsafe<const char>(PVZ::Memory::Variable + 100, trackName, std::strlen(trackName) + 1);
 	SETARG(__asm__Reanimation__FindTrackIndex, 1) = BaseAddress;
 	SETARG(__asm__Reanimation__FindTrackIndex, 6) = PVZ::Memory::Variable + 100;
 	SETARG(__asm__Reanimation__FindTrackIndex, 24) = PVZ::Memory::Variable;
@@ -192,7 +192,7 @@ byte __asm__Reanimation_SetFramesForLayer[]
 
 void PVZ::Animation::SetFramesForLayer(const char* theTrackName)
 {
-	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, theTrackName, std::strlen(theTrackName) + 1);
+	PVZ::Memory::WriteArrayUnsafe<const char>(PVZ::Memory::Variable + 100, theTrackName, std::strlen(theTrackName) + 1);
 	SETARG(__asm__Reanimation_SetFramesForLayer, 1) = PVZ::Memory::Variable + 100;
 	SETARG(__asm__Reanimation_SetFramesForLayer, 6) = this->BaseAddress;
 	PVZ::Memory::Execute(STRING(__asm__Reanimation_SetFramesForLayer));
@@ -209,7 +209,7 @@ byte __asm__Reanimation_SetImageOverride[]
 
 void PVZ::Animation::SetImageOverride(const char* theTrackName, Image theImage)
 {
-	PVZ::Memory::WriteArray<const char>(PVZ::Memory::Variable + 100, theTrackName, std::strlen(theTrackName) + 1);
+	PVZ::Memory::WriteArrayUnsafe<const char>(PVZ::Memory::Variable + 100, theTrackName, std::strlen(theTrackName) + 1);
 	SETARG(__asm__Reanimation_SetImageOverride, 1) = theImage.GetBaseAddress();
 	SETARG(__asm__Reanimation_SetImageOverride, 6) = PVZ::Memory::Variable + 100;
 	SETARG(__asm__Reanimation_SetImageOverride, 11) = this->GetBaseAddress();
