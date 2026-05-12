@@ -329,6 +329,16 @@ void PVZ::PVZApp::PreNewGame(PVZLevel::PVZLevel mode, bool look_for_saved_game)
 	);
 }
 
+void PVZ::PVZApp::FastLoad(PVZLevel::PVZLevel mode)
+{
+	PVZ::Memory::Execute(AsmBuilder()
+		.push_imm32(mode)
+		.mov_reg_imm(REG_EAX, BaseAddress)
+		.invoke(0x452C60)
+		.ret()
+	);
+}
+
 void PVZ::PVZApp::RemoveNotExistEffects()
 {
 	PVZ::Memory::Execute(AsmBuilder()
