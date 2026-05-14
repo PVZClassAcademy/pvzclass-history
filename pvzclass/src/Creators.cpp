@@ -224,10 +224,6 @@ byte __asm__ResetLawnmower[19]
 	RET,
 };
 
-void Creator::ResetLawnmover()
-{
-	Creator::ResetLawnmowers();
-}
 void Creator::ResetLawnmowers()
 {
 	PVZ::Memory::AllAccess(0x679BF8);

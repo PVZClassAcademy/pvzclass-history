@@ -270,12 +270,6 @@ namespace PVZ
 		{
 			return __prototype_GetAll<T, 0x0E4, 0x0E8, 0x38>();
 		}
-		/// @deprecated 请使用GetAllLawnmowers
-		template<typename T = LawnMower, typename = enable_if_t<is_base_of<LawnMower, T>::value>>
-		[[deprecated]] std::vector<T> GetAllLawnmovers()
-		{
-			return GetAllLawnmowers();
-		}
 		/// @brief 获取 DataArray\<LawnMower\> 中的全体对象。
 		/// @tparam T 成员值的类型，必须为 LawnMower 或它的派生类。
 		/// @return 装有全体 LawnMower （或者其派生类）对象的 std::vector

@@ -97,8 +97,6 @@ namespace Creator
 	/// @return 生成的物品
 	PVZ::Coin CreateCoin(CoinType::CoinType type, int x, int y, CoinMotionType::CoinMotionType motion);
 
-	/// @deprecated 请使用ResetLawnmowers
-	[[deprecated]] void ResetLawnmover();
 	/// @brief 移除场上已有的除草机，然后初始化本关的除草机。
 	void ResetLawnmowers();
 	/// @brief 生成一个空的场地物件

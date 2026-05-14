@@ -251,12 +251,6 @@ inline void DisableInitialLawnmower(BOOLEAN b = true)
 	MEMMOD_BYTE(0x40BC90, 0, 5);
 }
 
-/// @deprecated 请使用DisableInitialLawnmower
-[[deprecated]] inline void DisableInitialLawnmover(BOOLEAN b = true)
-{
-	DisableInitialLawnmower(b);
-}
-
 /// @brief 禁用冰冻关卡延迟一段时间后播放的失败音效
 /// @param b 是否开启此功能
 inline void DisableIceLevelFailSound(BOOLEAN b = true)

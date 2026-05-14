@@ -74,7 +74,5 @@ namespace PVZ
 		/// @brief 更新除草机出入水时的高度偏移和状态
 		void UpdatePool();
 	};
-	/// @deprecated 请使用拼写正确的版本
-	using Lawnmover [[deprecated]] = LawnMower;
 	using Lawnmower = LawnMower;
 }
