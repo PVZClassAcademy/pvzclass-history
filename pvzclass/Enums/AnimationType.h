@@ -40,8 +40,6 @@ namespace AnimationType
 		FootballZombie,
 		NewspaperZombie,
 		Zomboni,
-		/// @deprecated 请使用 Zomboni
-		Zomboin = 31,
 		WaterSpray,
 		Jalapeno,
 		Flame,
@@ -50,8 +48,6 @@ namespace AnimationType
 		ImpAsh,
 		DiggerAsh,
 		ZomboniAsh,
-		/// @deprecated 请使用 ZomboniAsh
-		ZomboinAsh = 39,
 		CatapultAsh,
 		GargantuarAsh,
 		Scaredyshroom,

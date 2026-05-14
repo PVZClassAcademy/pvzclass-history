@@ -18,8 +18,6 @@ namespace ZombieType
 		DuckyTubeZombie,
 		SnorkedZombie,
 		Zomboni,
-		/// @deprecated 请使用 Zomboni
-		Zomboin = 12,
 		ZombieBobsledTeam,
 		DolphinRiderZombie,
 		JackintheboxZombie,
