@@ -21,8 +21,6 @@ namespace PVZ
 		INT_SAFE_PROPERTY(Cooldown, __get_Cooldown, __set_Cooldown, 0x14);
 		/// @brief 植物默认子类型。原版只有非射手（0）与射手（1）之分。
 		INT_SAFE_PROPERTY(SubClass, __get_SubClass, __set_SubClass, 0x18);
-		/// @deprecated
-		INT_SAFE_PROPERTY(IsShooter, __get_IsShooter, __set_IsShooter, 0x18);
 		/// @brief 基础攻击间隔
 		INT_SAFE_PROPERTY(AttackCooldown, __get_AttackCooldown, __set_AttackCooldown, 0x1C);
 	};

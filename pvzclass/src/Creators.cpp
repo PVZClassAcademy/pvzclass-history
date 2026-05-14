@@ -464,11 +464,6 @@ void Creator::CreateExplosion(int x, int y, int radius, BOOLEAN cinder, byte bou
 	PVZ::Memory::Execute(STRING(__asm__CreateExplosion));
 }
 
-void Creator::CreateEffect(EffectType::EffectType type, float x, float y)
-{
-	PVZ::CreateParticleSystem(x, y, 0x618A0, type);
-}
-
 byte __asm__CreateSampleSound[24]
 {
 	MOV_ECX(0),

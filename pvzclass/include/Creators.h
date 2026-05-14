@@ -199,9 +199,6 @@ namespace Creator
 	/// @param fromjackzombie 爆炸是否伤害魅惑僵尸
 	void CreateExplosion(int x, int y, int radius, BOOLEAN cinder = true, byte bound = 5, BOOLEAN fromjackzombie = false);
 
-	/// @deprecated
-	void CreateEffect(EffectType::EffectType type, float x, float y);
-
 	/// @brief 播放 Sample 型音效
 	/// @param sound 音效类型
 	/// @see UpperSoundType::UpperSoundType

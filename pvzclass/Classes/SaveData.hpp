@@ -68,12 +68,6 @@ namespace PVZ
 		T_PROPERTY(BOOLEAN, HaveWallnutFirstAid, __get_HaveWallnutFirstAid, __set_HaveWallnutFirstAid, 0x234);
 		/// @brief 花园盆栽数量
 		INT_READONLY_PROPERTY(GardenPlantCount, __get_GardenPlantCount, 0x350);
-		/// @deprecated
-		class GardenPlant : public PVZ::GardenPlant
-		{
-		public:
-			GardenPlant(int address) : PVZ::GardenPlant(address) {};
-		};
 		/// @brief 获取花园盆栽
 		/// @param index 下标
 		/// @return 花园盆栽对象

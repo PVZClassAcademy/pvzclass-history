@@ -4,7 +4,7 @@ const char* ShieldType::ToString(ShieldType zombieat2)
 {
 	switch (zombieat2)
 	{
-	case ShieldType::ZombieAccessoriesType2None:
+	case ShieldType::None:
 		return "ZombieAccessoriesType2None";
 	case ShieldType::ScreenDoor:
 		return "ScreenDoor";

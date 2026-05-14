@@ -5,8 +5,6 @@ namespace ShieldType
 	enum ShieldType
 	{
 		None,
-		/// @deprecated 请改用 None
-		ZombieAccessoriesType2None = 0,
 		ScreenDoor,
 		Newspaper,
 		Ladder,

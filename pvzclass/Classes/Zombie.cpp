@@ -658,10 +658,6 @@ PVZ::Rect PVZ::Zombie::GetActualAttackRect()
 	return tmp;
 }
 
-PVZ::Rect PVZ::Zombie::GetActualRect()
-{
-    return this->GetZombieRect();
-}
 byte __asm__Zombie_GetRect[]
 {
 	MOV_EDI(0),

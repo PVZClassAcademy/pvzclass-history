@@ -10,8 +10,6 @@ namespace AnimationType
 		FinalWave,
 		Peashooter,
 		Wallnut,
-		/// @deprecated use Wallnut
-		Wallbut = 5,
 		LilyPad,
 		Sunflower,
 		LawnMower,
@@ -28,8 +26,6 @@ namespace AnimationType
 		Hypnoshroom,
 		Chomper,
 		Zombie,
-		/// @deprecated 请使用 Zombie
-		ZombieAccessory = 21,
 		Sun,
 		PotatoMine,
 		Spickweed,

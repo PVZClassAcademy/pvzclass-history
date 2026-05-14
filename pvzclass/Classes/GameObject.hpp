@@ -333,8 +333,6 @@ namespace PVZ
 		/// @brief 获取僵尸的实际可攻击范围。
 		/// @return 僵尸的实际攻击范围
 		Rect GetActualAttackRect();
-		/// @deprecated 请改用 GetZombieRect()
-		[[deprecated]] Rect GetActualRect();
 		/// @brief 获取僵尸的实际受击范围。
 		/// @return 僵尸的实际受击范围
 		Rect GetZombieRect();
@@ -394,8 +392,6 @@ namespace PVZ
 		INT_PROPERTY(MaxHp, __get_MaxHp, __set_MaxHp, 0x44);
 		/// @brief 植物子类别
 		INT_PROPERTY(SubClass, __get_SubClass, __set_SubClass, 0x48);
-		/// @deprecated
-		T_PROPERTY(BOOLEAN, Aggressive, __get_Aggressive, __set_Aggressive, 0x48);
 		/// @brief 消失倒计时
 		INT_PROPERTY(BloverDisappearCountdown, __get_BloverDisappearCountdown, __set_BloverDisappearCountdown, 0x4C);
 		/// @brief 一次性植物发动技能的倒计时
