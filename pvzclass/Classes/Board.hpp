@@ -235,6 +235,12 @@ namespace PVZ
 		/// @brief 更新迷雾效果
 		void UpdateFog();
 
+		/// @brief 加载读取游戏存档。通过 theFilePath 指定需要写入的存档文件的完整路径及文件名。
+		/// @return 是否载入成功
+		bool LawnLoadGame(PVZ::PVZString theFilePath);
+		/// @brief 保存游戏存档。通过 theFilePath 指定需要写入的存档文件的完整路径及文件名。
+		/// @return 是否保存成功
+		bool LawnSaveGame(PVZ::PVZString theFilePath);
 #pragma endregion
 
 #pragma region getmethod

@@ -336,6 +336,30 @@ void PVZ::Board::UpdateFog()
 	);
 }
 
+bool PVZ::Board::LawnLoadGame(PVZ::PVZString theFilePath)
+{
+	return PVZ::Memory::Execute(AsmBuilder()
+		.mov_reg_imm(REG_ECX, BaseAddress)
+		.push_imm32(theFilePath.GetBaseAddress())
+		.invoke(0x481FE0)
+		.mov_mem_reg(PVZ::Memory::Variable, REG_EAX)
+		.add_reg_imm(REG_ESP, 4)
+		.ret()
+	);
+}
+
+bool PVZ::Board::LawnSaveGame(PVZ::PVZString theFilePath)
+{
+	return PVZ::Memory::Execute(AsmBuilder()
+		.mov_reg_imm(REG_EDI, BaseAddress)
+		.push_imm32(theFilePath.GetBaseAddress())
+		.invoke(0x4820D0)
+		.mov_mem_reg(PVZ::Memory::Variable, REG_EAX)
+		.add_reg_imm(REG_ESP, 4)
+		.ret()
+	);
+}
+
 void PVZ::Board::Assault(int countdown)
 {
 	Memory::WriteMemoryUnsafe<int>(BaseAddress + 0x5574, countdown);
