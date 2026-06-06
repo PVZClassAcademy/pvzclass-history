@@ -720,6 +720,7 @@ int PVZ::Zombie::GetBobsledPosition()
 	return PVZ::Memory::Execute(AsmBuilder()
 		.mov_reg_imm(REG_ECX, this->GetBaseAddress())
 		.invoke(0x5346A0)
+		.mov_mem_reg(PVZ::Memory::Variable, REG_EAX)
 		.ret()
 	);
 }
