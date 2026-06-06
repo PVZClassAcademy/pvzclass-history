@@ -440,7 +440,7 @@ namespace PVZ
 		/// @brief 动画类型
 		T_READONLY_PROPERTY(AnimationType::AnimationType, Type, __get_Type, 0);
 		/// @brief 动画时长
-		T_PROPERTY(FLOAT, CycleRate, __get_CycleRate, __set_CycleRate, 4);
+		T_SIMPLE_PROPERTY(FLOAT, AnimTime, 4);
 		/// @brief 播放速率
 		T_PROPERTY(FLOAT, Speed, __get_Speed, __set_Speed, 8);
 		/// @brief 动画循环类型

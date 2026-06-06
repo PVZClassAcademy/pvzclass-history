@@ -459,9 +459,9 @@ bool PVZ::Zombie::EffectedBy(DamageRangeFlags range, bool usepvzfunc)
 		if (type == ZombieType::DrZomboss)
 		{
 			PVZ::Animation anim = this->GetAnimation();
-			if (state == ZombieState::ZOMBOSS_FALL && anim.CycleRate < 0.5)
+			if (state == ZombieState::ZOMBOSS_FALL && anim.AnimTime < 0.5)
 				return(false);
-			if (state == ZombieState::ZOMBOSS_RISE && anim.CycleRate > 0.5)
+			if (state == ZombieState::ZOMBOSS_RISE && anim.AnimTime > 0.5)
 				return(false);
 			if (state != ZombieState::ZOMBOSS_DOWN
 				&& state != ZombieState::ZOMBOSS_PREPARE_RISE
