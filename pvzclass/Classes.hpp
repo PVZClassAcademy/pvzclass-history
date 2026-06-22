@@ -32,3 +32,4 @@
 #include "include/Widgets/ButtonWidget.hpp"
 #include "include/Widgets/Dialog.hpp"
 #include "include/Widgets/GameSelector.hpp"
+#include "include/Widgets/WidgetManager.hpp"

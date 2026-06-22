@@ -189,13 +189,16 @@ namespace PVZ
 		{
 			if (localExecute)
 			{
-				byte* code = builder.get_code();
+				byte* srcCode = builder.get_code();
 				DWORD length = builder.get_length();
+				byte* code = (byte*)VirtualAlloc(NULL, length + 1, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
 				code[0] = PUSHAD;
+				memcpy(code + 1, srcCode + 1, length - 1);
 				code[length - 1] = POPAD;
 				code[length] = RET;
 				void (*func)() = (void (*)())code;
 				func();
+				VirtualFree(code, 0, MEM_RELEASE);
 				return ReadMemory<int>(Variable);
 			}
 			else

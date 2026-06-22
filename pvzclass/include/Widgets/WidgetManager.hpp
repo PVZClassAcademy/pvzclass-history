@@ -1,4 +1,5 @@
-#include "../PVZ.h"
+#pragma once
+#include "../../PVZ.h"
 
 namespace PVZ
 {
