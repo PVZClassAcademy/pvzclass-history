@@ -29,6 +29,6 @@
 
 #include "include/Effects/EffectSystem.hpp"
 
-#include "Widgets/ButtonWidget.hpp"
-#include "Widgets/Dialog.hpp"
+#include "include/Widgets/ButtonWidget.hpp"
+#include "include/Widgets/Dialog.hpp"
 #include "include/Widgets/GameSelector.hpp"
