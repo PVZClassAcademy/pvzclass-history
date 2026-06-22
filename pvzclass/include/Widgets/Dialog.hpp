@@ -1,4 +1,4 @@
-#include "../PVZ.h"
+#include "../../PVZ.h"
 
 namespace PVZ
 {
