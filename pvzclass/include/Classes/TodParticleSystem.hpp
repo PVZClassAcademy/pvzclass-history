@@ -36,6 +36,11 @@ namespace PVZ
 		/// @brief 重载粒子系统内所有发射器中粒子的大小。
 		/// @param scale 重载的大小倍数
 		void OverrideScale(float scale);
+		/// @brief 将粒子系统挂载到指定 AttachmentID，使其跟随目标对象移动。
+		/// @param attachmentID 目标附件 ID
+		/// @param OffsetX X 偏移
+		/// @param OffsetY Y 偏移
+		void AttachTo(AttachmentID attachmentID, float OffsetX, float OffsetY);
 	};
 	/// @brief 获取所有粒子系统。
 	/// @return 包含所有粒子系统的 vector。
