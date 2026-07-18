@@ -1,6 +1,6 @@
 #pragma once
 #include "../PVZ.h"
-#include "../Classes.hpp"
+#include "Classes.hpp"
 
 /// @brief 包含创建多种 PVZ 内部对象的函数
 namespace Creator

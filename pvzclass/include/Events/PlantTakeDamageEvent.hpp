@@ -1,6 +1,6 @@
 #pragma once
 #include "DLLEvent.h"
-#include "../../Classes/GameObject.hpp"
+#include "../Classes/GameObject.hpp"
 
 /// @brief 植物受到啃食伤害事件。
 /// @note 此事件不考虑 IZ 模式下的双倍伤害。若要手动避免，请另行结算后取消伤害，

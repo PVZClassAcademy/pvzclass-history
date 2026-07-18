@@ -1,5 +1,5 @@
 #include "Creators.h"
-#include "../Classes.hpp"
+#include "Classes.hpp"
 #include <iostream>
 
 byte __asm__CreateReanimation[44]
