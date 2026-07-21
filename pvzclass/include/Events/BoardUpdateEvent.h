@@ -24,6 +24,16 @@ namespace PVZEvent
 		BoardPauseUpdateEvent() : DLLEventTemplate() { Init("pauseBoardUpdate"); };
 	};
 
+	/// @brief 游戏即将检查时停倒计时的事件。可借助此事件实现时停倒计时调节。
+	/// @param Board
+	class BoardCheckTimeStopEvent : public DLLEventTemplate<0x415F6B, 6, REG_EBP>
+	{
+	public:
+		BoardCheckTimeStopEvent(const char* str) : DLLEventTemplate() { Init(str); };
+		BoardCheckTimeStopEvent(int address) : DLLEventTemplate() { Init(address); };
+		BoardCheckTimeStopEvent() : DLLEventTemplate() { Init("BoardCheckTimeStop"); };
+	};
+
 	/// @brief 游戏正常更新结束的事件
 	/// @param Board
 	class BoardAfterUpdateEvent : public DLLEventTemplate<0x41606E, 8, REG_EBP>
