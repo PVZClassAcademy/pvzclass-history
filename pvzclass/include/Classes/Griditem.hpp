@@ -1,6 +1,7 @@
 #pragma once
 #include "../../PVZ.h"
 #include "Board.hpp"
+#include "Effects/Reanimation.hpp"
 
 namespace PVZ
 {

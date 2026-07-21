@@ -210,7 +210,7 @@
     <ClCompile Include="src\Sexy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\Classes\Animation.cpp">
+    <ClCompile Include="src\Effects\Reanimation.cpp">
       <Filter>源文件\Classes</Filter>
     </ClCompile>
     <ClCompile Include="src\Classes\Attachment.cpp">
@@ -979,6 +979,9 @@
     </ClInclude>
     <ClInclude Include="include\Events\SyncBoardAfterEvent.hpp">
       <Filter>头文件\Events\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Effects\Reanimation.hpp">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

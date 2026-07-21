@@ -1,5 +1,5 @@
 #include <cstring>
-#include "../../PVZ.h"
+#include "Effects/Reanimation.hpp"
 
 PVZ::Animation PVZ::Animation::GetByIndex(uint32_t index)
 {

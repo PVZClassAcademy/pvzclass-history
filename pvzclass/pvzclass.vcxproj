@@ -163,7 +163,7 @@
   <ItemGroup>
     <ClCompile Include="src\Classes\AttachEffect.cpp" />
     <ClCompile Include="src\Classes\ChallengeScreen.cpp" />
-    <ClCompile Include="src\Classes\Animation.cpp" />
+    <ClCompile Include="src\Effects\Reanimation.cpp" />
     <ClCompile Include="src\Classes\Attachment.cpp" />
     <ClCompile Include="src\Classes\Board.cpp" />
     <ClCompile Include="src\Classes\Caption.cpp" />
@@ -279,6 +279,7 @@
     <ClInclude Include="Enums\FoleyType.h" />
     <ClInclude Include="include\Classes\SaveGameContext.hpp" />
     <ClInclude Include="include\Effects\EffectSystem.hpp" />
+    <ClInclude Include="include\Effects\Reanimation.hpp" />
     <ClInclude Include="include\Events\BoardUpdateEvent.h" />
     <ClInclude Include="include\Events\BossBungeeSpawnEvent.h" />
     <ClInclude Include="include\Events\ClearMousePointerEvent.h" />

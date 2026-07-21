@@ -2,6 +2,7 @@
 #include "../../PVZ.h"
 #include "Board.hpp"
 #include "TodParticleSystem.hpp"
+#include "Effects/Reanimation.hpp"
 
 namespace GameObjectType
 {
