@@ -48,7 +48,7 @@ class DLLEventTemplate : public DLLEvent
 {
 protected:
 	template<DWORD param>
-	static constexpr size_t param_size()
+	static constexpr uint32_t param_size()
 	{
 		if constexpr (param < MEM_ESP_ADD_MASK)
 			return 1;
@@ -57,15 +57,15 @@ protected:
 		else
 			return 5;
 	}
-	static constexpr size_t calculate_total_size()
+	static constexpr uint32_t calculate_total_size()
 	{
-		size_t total = 0;
+		uint32_t total = 0;
 		((total += param_size<Params>()), ...);
 		return total;
 	}
 	static constexpr auto build_base_bytes()
 	{
-		constexpr size_t total_size = calculate_total_size();
+		constexpr uint32_t total_size = calculate_total_size();
 		std::array<uint8_t, total_size> bytes{};
 		size_t offset = 0;
 
@@ -106,7 +106,7 @@ protected:
 		AsmBuilder builder{};
 		builder.add_bytes(compiled_base_bytes.data(), calculate_total_size());
 
-		builder.invoke(address).add_reg_imm(REG_ESP, this->regs.size() << 2);
+		builder.invoke(address).add_reg_imm(REG_ESP, uint32_t(this->regs.size() << 2));
 		this->InitExtra(builder);
 
 		start(builder.get_code() + 1, builder.get_length() - 1);
