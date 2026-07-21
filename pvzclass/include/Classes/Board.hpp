@@ -56,16 +56,22 @@ namespace PVZ
 		INT_READONLY_PROPERTY(LawnmowersCount, __get_LawnmowersCount, 0x110);
 		/// @brief 场地物品总数
 		INT_READONLY_PROPERTY(GriditemsCount, __get_GriditemsCount, 0x12C);
+		T_SIMPLE_PROPERTY(bool, IgnoreMouseUp, 0x150);
 		/// @brief 游戏是否已暂停
 		T_PROPERTY(BOOLEAN, GamePaused, __get_GamePaused, __set_GamePaused, 0x164);
 
-#pragma region fog
+#pragma region fog_and_grave
 
 		/// @brief 获得指定格的雾的浓度
 		/// @param row 行
 		/// @param column 列
 		/// @return 雾的浓度
 		int GetGridFog(int row, int column);
+		/// @brief 是否启用墓碑
+		/// @note 大部分生成墓碑的函数会自动调整此变量
+		T_SIMPLE_PROPERTY(bool, EnableGraveStones, 0x5C4);
+		INT_SIMPLE_PROPERTY(SpecialGraveStoneX, 0x5C8);
+		INT_SIMPLE_PROPERTY(SpecialGraveStoneY, 0x5CC);
 		/// @brief 雾的偏移
 		T_PROPERTY(FLOAT, FogOffset, __get_FogOffset, __set_FogOffset, 0x5D0);
 		/// @brief 雾吹飞效果倒计时
@@ -81,6 +87,10 @@ namespace PVZ
 		PROPERTY(SceneType::SceneType, __get_LevelScene, __set_LevelScene) LevelScene;
 		/// @brief 冒险模式关卡
 		INT_PROPERTY(AdventureLevel, __get_AdventureLevel, __set_AdventureLevel, 0x5550);
+		/// @brief 冒险模式草皮铺展位置
+		INT_SIMPLE_PROPERTY(SodPosition, 0x5554);
+		INT_SIMPLE_PROPERTY(PrevMouseX, 0x5558);
+		INT_SIMPLE_PROPERTY(PrevMouseY, 0x555C);
 		/// @brief 当前阳光数
 		INT_PROPERTY(Sun, __get_Sun, __set_Sun, 0x5560);
 		/// @brief 总波数
@@ -121,6 +131,9 @@ namespace PVZ
 		T_PROPERTY(byte, LevelAwardSpawned, __get_LevelAwardSpawned, __set_LevelAwardSpawned, 0x560C);
 		/// @brief 关卡进度条
 		INT_PROPERTY(LevelProcessBar, __get_LevelProcessBar, __set_LevelProcessBar, 0x5610);
+		/// @brief 时停效果倒计时
+		/// @note 若使用，你需要自己手动进行倒计时
+		INT_SIMPLE_PROPERTY(TimeStopCounter, 0x5748);
 		/// @brief 是否激活 Mustatche
 		T_PROPERTY(BOOLEAN, Mustache, __get_Mustache, __set_Mustache, 0x5761);
 		/// @brief 是否激活 Trickedout
