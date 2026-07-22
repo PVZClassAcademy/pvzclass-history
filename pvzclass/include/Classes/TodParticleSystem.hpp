@@ -40,7 +40,8 @@ namespace PVZ
 		/// @param attachmentID 目标附件 ID
 		/// @param OffsetX X 偏移
 		/// @param OffsetY Y 偏移
-		void AttachTo(AttachmentID attachmentID, float OffsetX, float OffsetY);
+		/// @return AttachEffect
+		AttachEffect AttachTo(AttachmentID attachmentID, float OffsetX, float OffsetY);
 	};
 	/// @brief 获取所有粒子系统。
 	/// @return 包含所有粒子系统的 vector。

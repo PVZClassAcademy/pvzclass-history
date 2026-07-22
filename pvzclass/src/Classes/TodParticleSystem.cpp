@@ -82,14 +82,15 @@ void PVZ::TodParticleSystem::OverrideScale(float scale)
 	);
 }
 
-void PVZ::TodParticleSystem::AttachTo(PVZ::AttachmentID attachmentID, float OffsetX, float OffsetY)
+PVZ::AttachEffect PVZ::TodParticleSystem::AttachTo(PVZ::AttachmentID attachmentID, float OffsetX, float OffsetY)
 {
-	PVZ::Memory::Execute(AsmBuilder()
+	return PVZ::Memory::Execute(AsmBuilder()
 		.mov_reg_imm(REG_ESI, this->BaseAddress)
 		.mov_reg_imm(REG_EDI, attachmentID.GetBaseAddress())
 		.push_float(OffsetY)
 		.push_float(OffsetX)
 		.invoke(0x405600)
+		.mov_mem_reg(PVZ::Memory::Variable, REG_EAX)
 		.add_reg_imm(REG_ESP, 8)
 		.ret()
 	);
